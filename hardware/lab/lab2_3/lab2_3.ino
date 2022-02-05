@@ -12,42 +12,23 @@ void setup()
 }
 void loop()
 {
-}
-void Task1(void* parameter){
-    
-}
-void Task2(void* parameter)
-{
-    while(1){
-        while (digitalRead(sw));
-        delay(200);
-        cnt++;
-        Serial.println(cnt);
-        while (!digitalRead(sw));
-            if (chkPrime(cnt))
-            {
-                digitalWrite(led1, 1);
-                delay(250);
-                digitalWrite(led1, 0);
-                delay(250);
-                digitalWrite(led1, 1);
-                delay(250);
-                digitalWrite(led1, 0);
-                delay(250);
-            }
-        delay(150);
-    }
-    vTaskDelay(1 / portTICK_PERIOD_MS);
-
-}
-
-void Task3(void *parameter)
-{
-    while (1)
+    while (digitalRead(sw))
+        ;
+    delay(200);
+    cnt++;
+    Serial.println(cnt);
+    while (!digitalRead(sw))
+        ;
+    if (chkPrime(cnt))
     {
-        dacWrite(led2, map(analogRead(ldr), 1300, 200, 255, 0));
-        Serial.println(analogRead(ldr));
-        delay(10);
+        digitalWrite(led1, 1);
+        delay(250);
+        digitalWrite(led1, 0);
+        delay(250);
+        digitalWrite(led1, 1);
+        delay(250);
+        digitalWrite(led1, 0);
+        delay(250);
     }
-    vTaskDelay(1 / portTICK_PERIOD_MS);
+    delay(150);
 }
