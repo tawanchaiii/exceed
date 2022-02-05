@@ -8,27 +8,12 @@ void setup()
     Serial.begin(115200);
     pinMode(ldr, INPUT);
     pinMode(led2, OUTPUT);
-    led2_task();
 }
 void loop()
 {
-    while (digitalRead(sw))
-        ;
-    delay(200);
-    cnt++;
-    Serial.println(cnt);
-    while (!digitalRead(sw))
-        ;
-    if (chkPrime(cnt))
-    {
-        digitalWrite(led1, 1);
-        delay(250);
-        digitalWrite(led1, 0);
-        delay(250);
-        digitalWrite(led1, 1);
-        delay(250);
-        digitalWrite(led1, 0);
-        delay(250);
-    }
-    delay(150);
+    int reading=analogRead(ldr);
+    int bright=reading/4;  
+    //map(analogRead(ldr), 2000, 300, 255, 0)
+    dacWrite(led2,bright);
+    vTaskDelay(10 / portTICK_PERIOD_MS);
 }
